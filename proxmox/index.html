@@ -5,61 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proxmox - Заметки и руководства</title>
     <link rel="stylesheet" href="../styles.css">
-    <style>
-        /* Специфичные стили для страницы Proxmox */
-        .content-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 30px;
-        }
-        
-        .sidebar {
-            background: var(--light);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            align-self: start;
-        }
-        
-        .sidebar h3 {
-            margin-top: 0;
-            color: var(--primary);
-            border-bottom: 2px solid var(--secondary);
-            padding-bottom: 10px;
-        }
-        
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .sidebar li {
-            margin-bottom: 10px;
-        }
-        
-        .sidebar a {
-            display: block;
-            padding: 8px 12px;
-            color: var(--dark);
-            text-decoration: none;
-            border-radius: 4px;
-            transition: all 0.2s;
-        }
-        
-        .sidebar a:hover {
-            background: var(--secondary);
-            color: white;
-        }
-        
-        @media (max-width: 768px) {
-            .content-wrapper {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 </head>
 <body>
+    <!-- Навбар -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo">Proxmox Guides</div>
+            <div class="nav-links">
+                <a href="../">Домой</a>
+                <a href="../docker/">Docker</a>
+                <a href="../haos/">Home Assistant</a>
+            </div>
+        </div>
+    </nav>
+
     <header>
         <div class="container">
             <h1>Proxmox VE</h1>
@@ -68,10 +27,6 @@
     </header>
 
     <div class="container">
-        <nav class="breadcrumbs">
-            <a href="../">Главная</a> → Proxmox
-        </nav>
-
         <div class="content-wrapper">
             <main class="content-page">
                 <h2>Добро пожаловать в раздел Proxmox</h2>
@@ -97,14 +52,6 @@
                     <li><a href="backup.html">Резервное копирование</a></li>
                     <li><a href="cluster.html">Создание кластера</a></li>
                     <li><a href="lxc.html">Работа с LXC</a></li>
-                    <li><a href="migration.html">Миграция ВМ</a></li>
-                    <li><a href="troubleshooting.html">Решение проблем</a></li>
-                </ul>
-                
-                <h3>Полезные ссылки</h3>
-                <ul>
-                    <li><a href="https://proxmox.com" target="_blank">Официальный сайт</a></li>
-                    <li><a href="https://forum.proxmox.com" target="_blank">Форум</a></li>
                 </ul>
             </aside>
         </div>
@@ -112,13 +59,8 @@
 
     <footer>
         <div class="container">
-            <p>© 2023 Технические заметки. Последнее обновление: <span id="current-date"></span></p>
+            <p>© 2023 Технические заметки</p>
         </div>
     </footer>
-
-    <script>
-        // Автоматическое обновление даты
-        document.getElementById('current-date').textContent = new Date().toLocaleDateString('ru-RU');
-    </script>
 </body>
 </html>
