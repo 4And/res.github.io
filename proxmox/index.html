@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proxmox: Руководство</title>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles.css"> <!-- Основные стили -->
+    <link rel="stylesheet" href="../content.css"> <!-- Стили контента (если нужно) -->
 </head>
 <body>
     <header>
@@ -15,17 +16,17 @@
     </header>
 
     <div class="container">
-        <!-- Хлебные крошки -->
-        <div class="breadcrumbs">
-            <a href="../">Главная</a> → Proxmox
-        </div>
+        <!-- Улучшенные хлебные крошки -->
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+            <a href="../">Главная</a>
+            <span aria-hidden="true">/</span>
+            <span>Proxmox</span>
+        </nav>
 
-        <!-- Контент страницы -->
-        <div class="content-page">
+        <main class="content-page">
             <h2>Установка Proxmox</h2>
             <p>Пошаговая инструкция...</p>
-            <!-- Ваш контент здесь -->
-        </div>
+        </main>
     </div>
 
     <footer>
