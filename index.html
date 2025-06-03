@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Заметки: Node.js в Proxmox</title>
+    <title>Заметки и руководства</title>
     <style>
         :root {
             --primary: #2c3e50;
@@ -22,7 +22,7 @@
         }
         
         .container {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -30,194 +30,115 @@
         header {
             background-color: var(--primary);
             color: white;
-            padding: 20px 0;
+            padding: 40px 0;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 50px;
             border-radius: 0 0 10px 10px;
         }
         
         h1 {
             margin: 0;
-            font-size: 2.2em;
+            font-size: 2.5em;
         }
         
-        .note-section {
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+        
+        .nav-button {
             background: white;
-            border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            color: var(--dark);
         }
         
-        h2 {
-            color: var(--secondary);
-            border-bottom: 2px solid var(--secondary);
-            padding-bottom: 8px;
-            margin-top: 0;
+        .nav-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
         }
         
-        pre {
-            background: #f5f5f5;
+        .nav-button img {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .nav-button h2 {
+            margin: 0;
             padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
-            border-left: 4px solid var(--secondary);
-        }
-        
-        code {
-            font-family: 'Courier New', Courier, monospace;
-            color: #e74c3c;
-        }
-        
-        .warning {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 5px 5px 0;
+            background-color: var(--primary);
+            color: white;
+            font-size: 1.2em;
         }
         
         footer {
             text-align: center;
-            margin-top: 50px;
+            margin-top: 80px;
             padding: 20px;
             color: #7f8c8d;
             font-size: 0.9em;
         }
         
-        .command {
-            display: block;
-            background: var(--dark);
-            color: white;
-            padding: 12px;
-            border-radius: 5px;
-            font-family: monospace;
-            margin: 10px 0;
+        @media (max-width: 768px) {
+            .button-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            header {
+                padding: 30px 0;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
         }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>Мои заметки по развертыванию Node.js в Proxmox</h1>
+            <h1>Заметки и руководства</h1>
             <p>Практические инструкции и полезные команды</p>
         </div>
     </header>
     
     <div class="container">
-        <section class="note-section">
-            <h2>1. Установка Proxmox VE</h2>
-            <p>Основные шаги для первоначальной настройки Proxmox:</p>
+        <div class="button-grid">
+            <a href="proxmox.html" class="nav-button">
+                <img src="https://raw.githubusercontent.com/4And/res.github.io/gitpage/images/Proxmox_logo_standard_hex_400px.png" alt="Proxmox">
+                <h2>Руководство по Proxmox</h2>
+            </a>
             
-            <div class="command">wget https://enterprise.proxmox.com/debian/proxmox-release-bullseye.gpg -O /etc/apt/trusted.gpg.d/proxmox-release-bullseye.gpg</div>
+            <a href="docker.html" class="nav-button">
+                <img src="https://raw.githubusercontent.com/4And/res.github.io/gitpage/images/Docker.png" alt="Docker">
+                <h2>Docker</h2>
+            </a>
             
-            <pre>echo "deb http://download.proxmox.com/debian/pve bullseye pve-no-subscription" > /etc/apt/sources.list.d/pve-install-repo.list</pre>
+            <a href="home-assistant.html" class="nav-button">
+                <img src="https://raw.githubusercontent.com/4And/res.github.io/gitpage/images/111logo_image.png" alt="Home Assistant">
+                <h2>Home Assistant</h2>
+            </a>
             
-            <div class="warning">
-                <strong>Важно!</strong> Не забудьте обновить пакеты после установки:
-                <div class="command">apt update && apt upgrade -y</div>
-            </div>
-        </section>
-        
-        <section class="note-section">
-            <h2>2. Создание LXC-контейнера для Node.js</h2>
-            <p>Оптимальные параметры для Node.js-приложений:</p>
-            
-            <ul>
-                <li>Тип: Privileged container (для работы с Docker)</li>
-                <li>ОС: Ubuntu 22.04 LTS</li>
-                <li>Ресурсы: 2 ядра CPU, 2GB RAM, 10GB диска</li>
-                <li>Сеть: bridge (vmbr0)</li>
-            </ul>
-            
-            <p>Команда для создания через CLI:</p>
-            <pre>pct create 100 local:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.gz \
---storage local-lvm \
---cores 2 \
---memory 2048 \
---swap 1024 \
---hostname nodejs-container \
---password SetYourStrongPasswordHere</pre>
-        </section>
-        
-        <section class="note-section">
-            <h2>3. Настройка Node.js в контейнере</h2>
-            
-            <p>Установка Node.js через nvm:</p>
-            <div class="command">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash</div>
-            <div class="command">nvm install --lts</div>
-            
-            <p>Базовые пакеты для работы:</p>
-            <pre>apt install -y git build-essential python3-pip</pre>
-            
-            <p>Настройка PM2 для управления процессами:</p>
-            <div class="command">npm install -g pm2</div>
-            <div class="command">pm2 startup</div>
-        </section>
-        
-        <section class="note-section">
-            <h2>4. Деплой приложения</h2>
-            
-            <p>Пример для деплоя простого приложения:</p>
-            <pre>git clone https://github.com/yourusername/your-node-app.git
-cd your-node-app
-npm install
-pm2 start server.js --name "My Node App"</pre>
-            
-            <p>Настройка Nginx как reverse proxy:</p>
-            <pre>server {
-    listen 80;
-    server_name yourdomain.com;
-    
-    location / {
-        proxy_pass http://localhost:3000;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
-    }
-}</pre>
-        </section>
-        
-        <section class="note-section">
-            <h2>5. Полезные команды Proxmox</h2>
-            
-            <table style="width: 100%; border-collapse: collapse;">
-                <tr>
-                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Команда</th>
-                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Описание</th>
-                </tr>
-                <tr>
-                    <td style="border: 1px solid #ddd; padding: 8px;"><code>pct list</code></td>
-                    <td style="border: 1px solid #ddd; padding: 8px;">Список всех контейнеров</td>
-                </tr>
-                <tr>
-                    <td style="border: 1px solid #ddd; padding: 8px;"><code>pct enter 100</code></td>
-                    <td style="border: 1px solid #ddd; padding: 8px;">Войти в контейнер с ID 100</td>
-                </tr>
-                <tr>
-                    <td style="border: 1px solid #ddd; padding: 8px;"><code>pct stop 100 && pct start 100</code></td>
-                    <td style="border: 1px solid #ddd; padding: 8px;">Перезапуск контейнера</td>
-                </tr>
-            </table>
-        </section>
+            <a href="mikrotik.html" class="nav-button">
+                <img src="https://raw.githubusercontent.com/4And/res.github.io/gitpage/images/mikrotik_logo.svg" alt="Mikrotik">
+                <h2>Mikrotik</h2>
+            </a>
+        </div>
     </div>
     
     <footer>
         <div class="container">
-            <p>Последнее обновление: <span id="current-date"></span></p>
-            <p>© 2023 Мои заметки по DevOps</p>
+            <p>© 2023 Технические заметки. Все права защищены.</p>
         </div>
     </footer>
-
-    <script>
-        // Автоматическое обновление даты
-        document.getElementById('current-date').textContent = new Date().toLocaleDateString('ru-RU', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-    </script>
 </body>
 </html>
