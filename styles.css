@@ -1,43 +1,121 @@
-/* Общие стили для всех страниц */
+/* Общие переменные */
+:root {
+  --primary: #2c3e50;
+  --secondary: #3498db;
+  --light: hsl(190, 17%, 86%);
+  --dark: #1a252f;
+  --button-bg: hsl(192, 38%, 84%);
+  --button-hover: hsl(192, 38%, 74%);
+  --button-text: #2c3e50;
+}
+
+/* Базовые стили */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--dark);
+  background-color: var(--light);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Шапка */
+header {
+  background-color: var(--primary);
+  color: white;
+  padding: 40px 0;
+  text-align: center;
+  margin-bottom: 50px;
+  border-radius: 0 0 10px 10px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2.5em;
+}
+
+/* Сетка кнопок */
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  padding: 20px;
+}
+
+/* Стили кнопок */
+.nav-button {
+  background: var(--button-bg);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+  color: var(--button-text);
+}
+
+.nav-button:hover {
+  background: var(--button-hover);
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.nav-button img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  padding: 20px;
+  box-sizing: border-box;
+  background: white;
+}
+
+.nav-button h2 {
+  margin: 0;
+  padding: 15px;
+  background-color: var(--primary);
+  color: white;
+  font-size: 1.2em;
+}
+
+/* Индивидуальные цвета кнопок */
+.button-proxmox { --button-bg: #6c3483; --button-hover: #5b2c70; }
+.button-docker { --button-bg: #2496ed; --button-hover: #1d7bc5; }
+.button-haos { --button-bg: #41bdf5; --button-hover: #2a9fd6; }
+.button-mikrotik { --button-bg: #ff7800; --button-hover: #e06a00; }
+
+/* Футер */
+footer {
+  text-align: center;
+  margin-top: 80px;
+  padding: 20px;
+  color: #7f8c8d;
+  font-size: 0.9em;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .button-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  header {
+    padding: 30px 0;
+  }
+  
+  h1 {
+    font-size: 2em;
+  }
+}
+
+/* Кнопка "Назад" */
 .back-button {
   display: inline-block;
   margin: 20px 0;
-  color: #3498db;
-}
-
-/* Новые стили для навигационных кнопок */
-.nav-button {
-  display: block;
-  #background: hsl(192, 38%, 84%); /* Заданный вами цвет фона */
-  background: #6c3483;
-  border-radius: 10px;
-  padding: 15px;
-  margin: 15px 0;
-  text-align: center;
-  text-decoration: none;
-  color: #2c3e50; /* Цвет текста для контраста */
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: all 0.3s ease;
-}
-
-/* Стиль при наведении */
-.nav-button:hover {
-  background: hsl(192, 38%, 74%); /* Немного темнее при наведении */
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-}
-
-/* Стили для изображений внутри кнопок */
-.nav-button img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto 10px;
-}
-
-/* Стили для заголовков внутри кнопок */
-.nav-button h2 {
-  margin: 0;
-  font-size: 1.2em;
-  color: inherit; /* Наследует цвет от родителя */
+  color: var(--secondary);
 }
