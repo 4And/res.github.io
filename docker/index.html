@@ -1,17 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-  <title>Proxmox: Все инструкции</title>
-  <link rel="stylesheet" href="../styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proxmox - Заметки и руководства</title>
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
-  <h1>Инструкции по Proxmox</h1>
-  <nav>
-    <a href="../">Главная</a> → Proxmox
-  </nav>
-  <ul>
-    <li><a href="install-pve.html">Установка</a></li>
-    <!-- Остальные ссылки -->
-  </ul>
+    <!-- Навбар -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo">Proxmox Guides</div>
+            <div class="nav-links">
+                <a href="../">Домой</a>
+                <a href="../docker/">Docker</a>
+                <a href="../haos/">Home Assistant</a>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <h1>Proxmox VE</h1>
+            <p>Виртуализация и управление серверами</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="content-wrapper">
+            <main class="content-page">
+                <h2>Добро пожаловать в раздел Proxmox</h2>
+                <p>Здесь собраны все руководства по работе с платформой виртуализации Proxmox VE.</p>
+                
+                <article>
+                    <h3>Основные возможности</h3>
+                    <ul>
+                        <li>Управление виртуальными машинами (KVM)</li>
+                        <li>Работа с LXC-контейнерами</li>
+                        <li>Кластерная организация серверов</li>
+                        <li>Резервное копирование и восстановление</li>
+                    </ul>
+                </article>
+            </main>
+
+            <aside class="sidebar">
+                <h3>Руководства</h3>
+                <ul>
+                    <li><a href="install.html">Установка Proxmox VE</a></li>
+                    <li><a href="network.html">Настройка сети</a></li>
+                    <li><a href="storage.html">Конфигурация хранилищ</a></li>
+                    <li><a href="backup.html">Резервное копирование</a></li>
+                    <li><a href="cluster.html">Создание кластера</a></li>
+                    <li><a href="lxc.html">Работа с LXC</a></li>
+                </ul>
+            </aside>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2023 Технические заметки</p>
+        </div>
+    </footer>
 </body>
 </html>
