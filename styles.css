@@ -72,7 +72,7 @@ h1 {
   object-fit: contain;
   padding: 20px;
   box-sizing: border-box;
-  background: transparent;
+  background: hsl(192, 38%, 84%);
 }
 
 .nav-button h2 {
