@@ -4,3 +4,39 @@
   margin: 20px 0;
   color: #3498db;
 }
+
+/* Новые стили для навигационных кнопок */
+.nav-button {
+  display: block;
+  background: hsl(192, 38%, 84%); /* Заданный вами цвет фона */
+  border-radius: 10px;
+  padding: 15px;
+  margin: 15px 0;
+  text-align: center;
+  text-decoration: none;
+  color: #2c3e50; /* Цвет текста для контраста */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+/* Стиль при наведении */
+.nav-button:hover {
+  background: hsl(192, 38%, 74%); /* Немного темнее при наведении */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Стили для изображений внутри кнопок */
+.nav-button img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto 10px;
+}
+
+/* Стили для заголовков внутри кнопок */
+.nav-button h2 {
+  margin: 0;
+  font-size: 1.2em;
+  color: inherit; /* Наследует цвет от родителя */
+}
