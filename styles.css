@@ -72,7 +72,7 @@ h1 {
   object-fit: contain;
   padding: 20px;
   box-sizing: border-box;
-  background: hsl(192, 38%, 84%);
+  background: inherit;
 }
 
 .nav-button h2 {
