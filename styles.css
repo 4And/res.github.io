@@ -84,10 +84,10 @@ h1 {
 }
 
 /* Индивидуальные цвета кнопок */
-.button-proxmox { --button-bg: #6c3483; --button-hover: #5b2c70; }
+.button-proxmox { --button-bg: #ff7800; --button-hover: #e06a00; }
 .button-docker { --button-bg: #2496ed; --button-hover: #1d7bc5; }
 .button-haos { --button-bg: #41bdf5; --button-hover: #2a9fd6; }
-.button-mikrotik { --button-bg: #ff7800; --button-hover: #e06a00; }
+.button-mikrotik { --button-bg: #6c3483; --button-hover: #5b2c70; }
 
 /* Футер */
 footer {
