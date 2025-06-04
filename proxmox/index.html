@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proxmox - Заметки и руководства</title>
+    <title>Настройка репозиториев Proxmox</title>
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
 </head>
 <body>
-    <!-- Навбар -->
     <nav class="navbar">
         <div class="navbar-container">
             <div class="logo">Proxmox Guides</div>
@@ -21,37 +21,51 @@
 
     <header>
         <div class="container">
-            <h1>Proxmox VE</h1>
-            <p>Виртуализация и управление серверами</p>
+            <h1>Настройка репозиториев для обновлений</h1>
         </div>
     </header>
 
     <div class="container">
         <div class="content-wrapper">
-            <main class="content-page">
-                <h2>Добро пожаловать в раздел Proxmox</h2>
-                <p>Здесь собраны все руководства по работе с платформой виртуализации Proxmox VE.</p>
-                
+            <main class="markdown-content">
                 <article>
-                    <h3>Основные возможности</h3>
-                    <ul>
-                        <li>Управление виртуальными машинами (KVM)</li>
-                        <li>Работа с LXC-контейнерами</li>
-                        <li>Кластерная организация серверов</li>
-                        <li>Резервное копирование и восстановление</li>
-                    </ul>
+                    <p>Редактируем <strong>sources list</strong></p>
+                    
+                    <pre><code class="language-bash">nano /etc/apt/sources.list</code></pre>
+                    
+                    <p>Добавляем эти данные ниже содержимого файла:</p>
+                    
+                    <pre><code class="language-bash"># Proxmox VE pve-no-subscription repository provided by proxmox.com
+# NOT recommended for production use
+deb http://download.proxmox.com/debian/pve bookworm pve-no-subscription
+
+# Security updates
+deb http://security.debian.org/debian-security bookworm-security main contrib</code></pre>
+                    
+                    <p>Отключаем репозитории для <strong>Production</strong><br>
+                    Следующими отключаем платные репозитории в <strong>pve-enterprise.list</strong>:</p>
+                    
+                    <pre><code class="language-bash">nano /etc/apt/sources.list.d/pve-enterprise.list</code></pre>
+                    
+                    <p>Закомментировать эту строку:</p>
+                    
+                    <pre><code>#deb https://enterprise.proxmox.com/debian/pve bookworm pve-enterprise</code></pre>
+                    
+                    <div class="warning-box">
+                        <strong>Важно!</strong> После изменения репозиториев выполните:
+                        <pre><code class="language-bash">apt update && apt upgrade -y</code></pre>
+                    </div>
                 </article>
             </main>
 
             <aside class="sidebar">
-                <h3>Руководства</h3>
+                <h3>Другие руководства Proxmox</h3>
                 <ul>
                     <li><a href="install.html">Установка Proxmox VE</a></li>
                     <li><a href="network.html">Настройка сети</a></li>
                     <li><a href="storage.html">Конфигурация хранилищ</a></li>
+                    <li class="active"><a href="repositories.html">Репозитории</a></li>
                     <li><a href="backup.html">Резервное копирование</a></li>
-                    <li><a href="cluster.html">Создание кластера</a></li>
-                    <li><a href="lxc.html">Работа с LXC</a></li>
                 </ul>
             </aside>
         </div>
@@ -59,8 +73,17 @@
 
     <footer>
         <div class="container">
-            <p>© 2023 Технические заметки</p>
+            <p>© 2023 Технические заметки. Последнее обновление: <span id="current-date"></span></p>
         </div>
     </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>
+        // Подсветка синтаксиса
+        hljs.highlightAll();
+        
+        // Автоматическое обновление даты
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString('ru-RU');
+    </script>
 </body>
 </html>
